@@ -1,7 +1,7 @@
 package com.byte_sized_lessons.build_the_logic.controller;
 
 import com.byte_sized_lessons.build_the_logic.dto.GenerateWorksheetRequest;
-import com.byte_sized_lessons.build_the_logic.dto.WorksheetResponse;
+import com.byte_sized_lessons.build_the_logic.dto.WorksheetDto;
 import com.byte_sized_lessons.build_the_logic.service.PdfExportService;
 import com.byte_sized_lessons.build_the_logic.service.WorksheetService;
 import jakarta.validation.Valid;
@@ -26,17 +26,17 @@ public class WorksheetController {
     private final PdfExportService pdfExportService;
 
     @PostMapping("/generate")
-    public ResponseEntity<WorksheetResponse> generateWorksheet(@Valid @RequestBody GenerateWorksheetRequest request) {
+    public ResponseEntity<WorksheetDto> generateWorksheet(@Valid @RequestBody GenerateWorksheetRequest request) {
         return ResponseEntity.ok(worksheetService.generateWorksheet(request));
     }
 
     @PostMapping
-    public ResponseEntity<WorksheetResponse> createWorksheet(@Valid @RequestBody GenerateWorksheetRequest request) {
+    public ResponseEntity<WorksheetDto> createWorksheet(@Valid @RequestBody GenerateWorksheetRequest request) {
         return ResponseEntity.ok(worksheetService.generateAndSaveWorksheet(request));
     }
 
     @GetMapping("/{worksheetId}")
-    public ResponseEntity<WorksheetResponse> getWorksheet(@PathVariable Long worksheetId) {
+    public ResponseEntity<WorksheetDto> getWorksheet(@PathVariable Long worksheetId) {
         return ResponseEntity.ok(worksheetService.getWorksheetById(worksheetId));
     }
 

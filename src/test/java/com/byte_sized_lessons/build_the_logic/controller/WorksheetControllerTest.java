@@ -37,8 +37,11 @@ class WorksheetControllerTest {
                     }
                     """))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.title").value("Loops Worksheet (Basic)"))
-            .andExpect(jsonPath("$.questions.length()").value(5));
+            .andExpect(jsonPath("$.metadata.title").value("Loops Worksheet (Basic)"))
+            .andExpect(jsonPath("$.questions.length()").value(5))
+            .andExpect(jsonPath("$.questions[0].type").value("FILL_IN_STEPS"))
+            .andExpect(jsonPath("$.questions[0].content.template").value("fill_in_steps"))
+            .andExpect(jsonPath("$.answerKey.entries.length()").value(5));
     }
 
     @Test
